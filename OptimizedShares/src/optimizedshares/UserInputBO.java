@@ -25,7 +25,6 @@ class UserInputPanel extends JPanel implements ActionListener {
 
         JPanel CenterPanel = new JPanel();
         CenterPanel.add(NumberOfMemberPanel);
-
         CenterPanel.add(OpenButton);
         setLayout(new BorderLayout());
         add(CenterPanel, BorderLayout.CENTER);
@@ -34,15 +33,16 @@ class UserInputPanel extends JPanel implements ActionListener {
 
     public void actionPerformed(ActionEvent evt) //event handling
     {
-
         String arg = evt.getActionCommand();
         if (arg.equals("Submit")) {
-            try{
+            try {
                 NumberOfMembers = NumberOfMemberField.getText();
                 ShareBO share = new ShareBO(NumberOfMembers);
-            }
-            catch(NumberFormatException e){
-                 JOptionPane.showMessageDialog(null, "Enter how many members came to csctf noob!", "Confirmation", JOptionPane.ERROR_MESSAGE);
+                JComponent component = (JComponent) evt.getSource();
+                Window win = SwingUtilities.getWindowAncestor(component);
+                win.dispose();
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Enter how many members came to csctf noob!", "Confirmation", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
@@ -70,15 +70,14 @@ public class UserInputBO extends JFrame {
                 System.exit(0);
             }
         });
-
+         
         Container contentPane = getContentPane(); //add a panel to a frame
         CP_Panel = new UserInputPanel();
         contentPane.add(CP_Panel);
-        show();
+        setVisible(true);
     }
 
     public static void main(String[] args) {
         JFrame frame = new UserInputBO();
-        frame.show();
     }
 }

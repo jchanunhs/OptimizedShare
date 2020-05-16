@@ -42,10 +42,10 @@ class SharePanel extends JPanel implements ActionListener {
             CPs.add(CPShareField[i]);
         }
         
-        Box container = Box.createHorizontalBox();
-        container.add(Names);
-        container.add(Points);
-        container.add(CPs);
+        Box member_container = Box.createHorizontalBox();
+        member_container.add(Names);
+        member_container.add(Points);
+        member_container.add(CPs);
         
         
         
@@ -71,7 +71,7 @@ class SharePanel extends JPanel implements ActionListener {
         info.add(TotalPointPanel);
         info.add(OpenButton);
         
-        JScrollPane pane = new JScrollPane(container,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        JScrollPane pane = new JScrollPane(member_container,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         pane.setPreferredSize(new Dimension(700, 570));
         
         add(info,BorderLayout.NORTH);
@@ -139,7 +139,7 @@ public class ShareBO extends JFrame {
         Container contentPane = getContentPane(); //add a panel to a frame
         CP_Panel = new SharePanel(Num_Members);
         contentPane.add(CP_Panel);
-        show();
+        setVisible(true);
     }
 
    
