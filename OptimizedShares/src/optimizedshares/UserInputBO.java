@@ -6,12 +6,12 @@ import javax.swing.*;
 
 class UserInputPanel extends JPanel implements ActionListener {
 
-    private JButton OpenButton;
+    private JButton SubmitButton;
     private JTextField NumberOfMemberField;
     private String NumberOfMembers;
 
     public UserInputPanel() {
-        OpenButton = new JButton("Submit");
+        SubmitButton = new JButton("Submit");
 
         NumberOfMemberField = new JTextField(15);
 
@@ -21,13 +21,13 @@ class UserInputPanel extends JPanel implements ActionListener {
         NumberOfMemberPanel.add(NumberOfMemberLabel);
         NumberOfMemberPanel.add(NumberOfMemberField);
 
-        OpenButton.addActionListener(this); //event listener registration
+        SubmitButton.addActionListener(this); //event listener registration
 
         JPanel CenterPanel = new JPanel();
         CenterPanel.add(NumberOfMemberPanel);
-        CenterPanel.add(OpenButton);
+        CenterPanel.add(SubmitButton);
         setLayout(new BorderLayout());
-        add(CenterPanel, BorderLayout.CENTER);
+        add(CenterPanel, BorderLayout.NORTH);
 
     }
 
@@ -37,10 +37,15 @@ class UserInputPanel extends JPanel implements ActionListener {
         if (arg.equals("Submit")) {
             try {
                 NumberOfMembers = NumberOfMemberField.getText();
-                ShareBO share = new ShareBO(NumberOfMembers);
+                SharePanel share = new SharePanel(NumberOfMembers);
+                removeAll();
+                revalidate();
+                repaint();
+                add(share,BorderLayout.CENTER);
+             /* ShareBO share = new ShareBO(NumberOfMembers);
                 JComponent component = (JComponent) evt.getSource();
                 Window win = SwingUtilities.getWindowAncestor(component);
-                win.dispose();
+                win.dispose(); */
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Enter how many members came to csctf noob!", "Confirmation", JOptionPane.ERROR_MESSAGE);
             }
@@ -73,6 +78,7 @@ public class UserInputBO extends JFrame {
          
         Container contentPane = getContentPane(); //add a panel to a frame
         CP_Panel = new UserInputPanel();
+
         contentPane.add(CP_Panel);
         setVisible(true);
     }

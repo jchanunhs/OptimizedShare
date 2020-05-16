@@ -1,3 +1,0 @@
-optimizedshares.SharePanel
-optimizedshares.ShareBO$1
-optimizedshares.ShareBO
