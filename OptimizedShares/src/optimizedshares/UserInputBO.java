@@ -42,7 +42,8 @@ class UserInputPanel extends JPanel implements ActionListener {
                 revalidate();
                 repaint();
                 add(share,BorderLayout.CENTER);
-             /* ShareBO share = new ShareBO(NumberOfMembers);
+             /* Open up a new JFrame and close the current one
+                ShareBO share = new ShareBO(NumberOfMembers);
                 JComponent component = (JComponent) evt.getSource();
                 Window win = SwingUtilities.getWindowAncestor(component);
                 win.dispose(); */
